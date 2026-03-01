@@ -101,7 +101,7 @@ const replacements = [
     [/>30 minutes</g, '>30 minutos<'],
     [/>1 hour</g, '>1 hora<'],
     [/>2 hours</g, '>2 horas<'],
-    [/>Custom</g, '>Personalizado<'],
+    [/>Custom</g, '>Crear<'],
     [/>Set</g, '>Establecer<'],
     [/Download Discography/g, 'Descargar Discografía'],
     [/Select which releases to download for/g, 'Selecciona qué lanzamientos descargar para'],
