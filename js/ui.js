@@ -1595,7 +1595,7 @@ export class UIRenderer {
                 if (listContainer) listContainer.innerHTML = '';
             }
         } else {
-            if (selectBtnText) selectBtnText.textContent = 'Select Music Folder';
+            if (selectBtnText) selectBtnText.textContent = 'Seleccionar carpeta de música';
             if (introDiv) introDiv.style.display = 'block';
             if (headerDiv) headerDiv.style.display = 'none';
             if (listContainer) listContainer.innerHTML = '';
@@ -2419,7 +2419,7 @@ export class UIRenderer {
             const firstCopyright = tracks.find((track) => track.copyright)?.copyright;
 
             metaEl.innerHTML =
-                (dateDisplay ? `${dateDisplay} • ` : '') + `${tracks.length} tracks • ${formatDuration(totalDuration)}`;
+                (dateDisplay ? `${dateDisplay} • ` : '') + `${tracks.length} pistas • ${formatDuration(totalDuration)}`;
 
             prodEl.innerHTML =
                 `By <a href="/artist/${album.artist.id}">${album.artist.name}</a>` +
@@ -2653,15 +2653,15 @@ export class UIRenderer {
                                             const metaEl = document.getElementById('playlist-detail-meta');
                                             if (metaEl) {
                                                 const totalDuration = calculateTotalDuration(updatedPlaylist.tracks);
-                                                metaEl.textContent = `${updatedPlaylist.tracks.length} tracks • ${formatDuration(totalDuration)}`;
+                                                metaEl.textContent = `${updatedPlaylist.tracks.length} pistas • ${formatDuration(totalDuration)}`;
                                             }
                                         }
 
-                                        showNotification(`Added "${trackData.title}" to playlist`);
+                                        showNotification(`Se añadió "${trackData.title}" a la playlist`);
                                     }
                                 } catch (error) {
                                     console.error('Failed to add track to playlist:', error);
-                                    showNotification('Failed to add track to playlist');
+                                    showNotification('Error al añadir la pista a la playlist');
                                 }
                             }
                         };
@@ -2796,7 +2796,7 @@ export class UIRenderer {
                 const tracks = playlistData.tracks || [];
                 const totalDuration = calculateTotalDuration(tracks);
 
-                metaEl.textContent = `${tracks.length} tracks • ${formatDuration(totalDuration)}`;
+                metaEl.textContent = `${tracks.length} pistas • ${formatDuration(totalDuration)}`;
                 descEl.textContent = playlistData.description || '';
 
                 const originalTracks = [...tracks];
@@ -2949,7 +2949,7 @@ export class UIRenderer {
 
                 const totalDuration = calculateTotalDuration(tracks);
 
-                metaEl.textContent = `${playlist.numberOfTracks} tracks • ${formatDuration(totalDuration)}`;
+                metaEl.textContent = `${playlist.numberOfTracks} pistas • ${formatDuration(totalDuration)}`;
                 descEl.textContent = playlist.description || '';
 
                 const originalTracks = [...tracks];
@@ -3156,7 +3156,7 @@ export class UIRenderer {
             this.adjustTitleFontSize(titleEl, displayTitle);
 
             const totalDuration = calculateTotalDuration(tracks);
-            metaEl.textContent = `${tracks.length} tracks • ${formatDuration(totalDuration)}`;
+            metaEl.textContent = `${tracks.length} pistas • ${formatDuration(totalDuration)}`;
             descEl.innerHTML = `${mix.subTitle}`;
 
             tracklistContainer.innerHTML = `
@@ -3362,7 +3362,7 @@ export class UIRenderer {
                             bioEl.appendChild(document.createElement('br'));
                             const readMore = document.createElement('span');
                             readMore.className = 'bio-read-more';
-                            readMore.textContent = 'Read More';
+                            readMore.textContent = 'Leer más';
                             readMore.onclick = (e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -3521,7 +3521,7 @@ export class UIRenderer {
                     // Add click handler to load and display unreleased projects
                     loadUnreleasedBtn.onclick = async () => {
                         loadUnreleasedBtn.disabled = true;
-                        loadUnreleasedBtn.textContent = 'Loading...';
+                        loadUnreleasedBtn.textContent = 'Cargando...';
 
                         try {
                             const unreleasedData = await getArtistUnreleasedProjects(artist.name);
@@ -3583,11 +3583,11 @@ export class UIRenderer {
                                     };
                                 });
                             } else {
-                                loadUnreleasedBtn.textContent = 'No unreleased projects';
+                                loadUnreleasedBtn.textContent = 'No hay proyectos sin lanzamientos';
                             }
                         } catch (error) {
                             console.error('Failed to load unreleased projects:', error);
-                            loadUnreleasedBtn.textContent = 'Failed to load';
+                            loadUnreleasedBtn.textContent = 'Error al cargar';
                             loadUnreleasedBtn.disabled = false;
                         }
                     };
@@ -3859,7 +3859,7 @@ export class UIRenderer {
 
             shareBtn.onclick = () => {
                 const url = getShareUrl(`/userplaylist/${playlist.id || playlist.uuid}`);
-                navigator.clipboard.writeText(url).then(() => alert('Link copied to clipboard!'));
+                navigator.clipboard.writeText(url).then(() => alert('Enlace copiado al portapapeles!'));
             };
             fragment.appendChild(shareBtn);
         }
@@ -4100,7 +4100,7 @@ export class UIRenderer {
                 const stats = this.api.getCacheStats();
                 const cacheInfo = document.getElementById('cache-info');
                 if (cacheInfo) {
-                    cacheInfo.textContent = `Cache: ${stats.memoryEntries}/${stats.maxSize} entries`;
+                    cacheInfo.textContent = `Caché: ${stats.memoryEntries}/${stats.maxSize} entradas`;
                 }
             }
         );
@@ -4139,7 +4139,7 @@ export class UIRenderer {
         similarSection.style.display = 'none';
 
         if (!trackId || trackId === 'undefined' || trackId === 'null') {
-            titleEl.textContent = 'Invalid Track ID';
+            titleEl.textContent = 'ID de pista inválido';
             artistEl.innerHTML = '';
             return;
         }
@@ -4231,7 +4231,7 @@ export class UIRenderer {
             document.title = `${track.title} - ${getTrackArtists(track)}`;
         } catch (error) {
             console.error('Failed to load track:', error);
-            titleEl.textContent = 'Track not found';
+            titleEl.textContent = 'Pista no encontrada';
             artistEl.innerHTML = '';
         }
     }

@@ -64,7 +64,7 @@ export function initializeUIInteractions(player, api, ui) {
                     if (subtitle) {
                         subtitle.textContent = `${updatedFolder.playlists.length} playlists`;
                     }
-                    showNotification('Playlist added to folder');
+                    showNotification('Playlist añadida a la carpeta');
                 }
             }
         };
@@ -147,7 +147,7 @@ export function initializeUIInteractions(player, api, ui) {
                 if (addedCount > 0) {
                     showNotification(`Added ${addedCount} track${addedCount > 1 ? 's' : ''} to Liked`);
                 } else {
-                    showNotification('All tracks in queue are already liked');
+                    showNotification('Todas las pistas en la cola ya tienen tu me gusta');
                 }
 
                 refreshQueuePanel();
@@ -159,7 +159,7 @@ export function initializeUIInteractions(player, api, ui) {
             addToPlaylistBtn.addEventListener('click', async () => {
                 const playlists = await db.getPlaylists();
                 if (playlists.length === 0) {
-                    showNotification('No playlists yet. Create one first.');
+                    showNotification('Aún no hay playlists. Crea una primero.');
                     return;
                 }
 
@@ -214,7 +214,7 @@ export function initializeUIInteractions(player, api, ui) {
                             showNotification(`Added ${addedCount} tracks to playlist: ${playlistName}`);
                         } catch (error) {
                             console.error('Failed to add tracks to playlist:', error);
-                            showNotification('Failed to add tracks to playlist');
+                            showNotification('Error al añadir pistas a la playlist');
                         }
 
                         closeModal();
@@ -426,10 +426,10 @@ export function initializeUIInteractions(player, api, ui) {
                     const updatedFolder = await db.addPlaylistToFolder(folderId, playlistId);
                     syncManager.syncUserFolder(updatedFolder, 'update');
                     window.dispatchEvent(new HashChangeEvent('hashchange'));
-                    showNotification('Playlist added to folder');
+                    showNotification('Playlist añadida a la carpeta');
                 } catch (error) {
                     console.error('Failed to add playlist to folder:', error);
-                    showNotification('Failed to add playlist to folder', 'error');
+                    showNotification('Error al añadir la playlist a la carpeta', 'error');
                 }
             }
         });

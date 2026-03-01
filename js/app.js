@@ -809,7 +809,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } catch (error) {
                 console.error('Failed to play album:', error);
                 const { showNotification } = await loadDownloadsModule();
-                showNotification('Failed to play album');
+                showNotification('Error al reproducir el álbum');
             }
         }
 
@@ -838,12 +838,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     player.playTrackFromQueue();
 
                     const { showNotification } = await loadDownloadsModule();
-                    showNotification('Shuffling album');
+                    showNotification('Reproduciendo álbum aleatoriamente');
                 }
             } catch (error) {
                 console.error('Failed to shuffle album:', error);
                 const { showNotification } = await loadDownloadsModule();
-                showNotification('Failed to shuffle album');
+                showNotification('Error al reproducir el álbum aleatoriamente');
             }
         }
 
@@ -907,11 +907,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 player.playTrackFromQueue();
 
                 const { showNotification } = await loadDownloadsModule();
-                showNotification('Shuffling artist discography');
+                showNotification('Reproduciendo discografía del artista aleatoriamente');
             } catch (error) {
                 console.error('Failed to shuffle artist tracks:', error);
                 const { showNotification } = await loadDownloadsModule();
-                showNotification('Failed to shuffle artist tracks');
+                showNotification('Error al reproducir pistas del artista aleatoriamente');
             } finally {
                 if (document.body.contains(btn)) {
                     btn.disabled = false;
@@ -1656,7 +1656,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         shareBtn.style.display = playlist.isPublic ? 'flex' : 'none';
                         shareBtn.onclick = () => {
                             const url = getShareUrl(`/userplaylist/${playlist.id}`);
-                            navigator.clipboard.writeText(url).then(() => alert('Link copied to clipboard!'));
+                            navigator.clipboard.writeText(url).then(() => alert('Enlace copiado al portapapeles!'));
                         };
                     }
 
@@ -1720,7 +1720,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         shareBtn.style.display = playlist.isPublic ? 'flex' : 'none';
                         shareBtn.onclick = () => {
                             const url = getShareUrl(`/userplaylist/${playlist.id}`);
-                            navigator.clipboard.writeText(url).then(() => alert('Link copied to clipboard!'));
+                            navigator.clipboard.writeText(url).then(() => alert('Enlace copiado al portapapeles!'));
                         };
                     }
 
@@ -2099,7 +2099,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 let path;
 
                 if (isNeutralino) {
-                    path = await window.Neutralino.os.showFolderDialog('Select Music Folder');
+                    path = await window.Neutralino.os.showFolderDialog('Seleccionar carpeta de música');
                     if (!path) return;
                     // Mock a handle object for UI compatibility
                     handle = { name: path.split(/[/\\]/).pop() || path, isNeutralino: true, path };
@@ -2203,8 +2203,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const btn = document.getElementById('select-local-folder-btn');
                 const btnText = document.getElementById('select-local-folder-text');
                 if (btn) {
-                    if (btnText) btnText.textContent = 'Select Music Folder';
-                    else btn.textContent = 'Select Music Folder';
+                    if (btnText) btnText.textContent = 'Seleccionar carpeta de música';
+                    else btn.textContent = 'Seleccionar carpeta de música';
                     btn.disabled = false;
                 }
             }

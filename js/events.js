@@ -242,7 +242,7 @@ export function initializePlayerEvents(player, audioPlayer, scrobbler, ui) {
             if (player.isSleepTimerActive()) {
                 player.clearSleepTimer();
                 trackCancelSleepTimer();
-                showNotification('Sleep timer cancelled');
+                showNotification('Temporizador de apagado cancelado');
             } else {
                 showSleepTimerModal(player);
             }
@@ -255,7 +255,7 @@ export function initializePlayerEvents(player, audioPlayer, scrobbler, ui) {
             if (player.isSleepTimerActive()) {
                 player.clearSleepTimer();
                 trackCancelSleepTimer();
-                showNotification('Sleep timer cancelled');
+                showNotification('Temporizador de apagado cancelado');
             } else {
                 showSleepTimerModal(player);
             }
@@ -769,7 +769,7 @@ export async function handleTrackAction(
     // Actions not allowed for unavailable tracks
     const forbiddenForUnavailable = ['add-to-queue', 'play-next', 'track-mix', 'download'];
     if (item.isUnavailable && forbiddenForUnavailable.includes(action)) {
-        showNotification('This track is unavailable.');
+        showNotification('Esta pista no está disponible.');
         return;
     }
 
@@ -789,7 +789,7 @@ export async function handleTrackAction(
             // Check if album/artist is blocked
             const { contentBlockingSettings } = await import('./storage.js');
             if (type === 'album' && contentBlockingSettings.shouldHideAlbum(item)) {
-                showNotification('This album is blocked');
+                showNotification('Este álbum está bloqueado');
                 return;
             }
 
@@ -860,7 +860,7 @@ export async function handleTrackAction(
             if (action === 'play-next') {
                 player.addNextToQueue(tracks);
                 if (window.renderQueueFunction) window.renderQueueFunction();
-                showNotification(`Playing next: ${tracks.length} tracks`);
+                showNotification(`Reproduciendo a continuación: ${tracks.length} pistas`);
                 return;
             }
 
@@ -899,7 +899,7 @@ export async function handleTrackAction(
             showNotification(`Playing ${type.replace('user-', '')}: ${name}`);
         } catch (error) {
             console.error('Failed to handle collection action:', error);
-            showNotification(`Failed to process ${type} action`);
+            showNotification(`Error al procesar la acción de ${type}`);
         }
         return;
     }
@@ -917,7 +917,7 @@ export async function handleTrackAction(
     // Check if track/artist is blocked
     const { contentBlockingSettings } = await import('./storage.js');
     if (type === 'track' && contentBlockingSettings.shouldHideTrack(item)) {
-        showNotification('This track is blocked');
+        showNotification('Esta pista está bloqueada');
         return;
     }
 
@@ -940,7 +940,7 @@ export async function handleTrackAction(
         if (item.mixes?.TRACK_MIX) {
             navigate(`/mix/${item.mixes.TRACK_MIX}`);
         } else {
-            showNotification('No mix available for this track');
+            showNotification('No hay mix disponible para esta pista');
         }
     } else if (action === 'download') {
         trackDownloadTrack(item, downloadQualitySettings.getQuality());
@@ -1188,7 +1188,7 @@ export async function handleTrackAction(
 
         trackCopyLink(type, item.id || item.uuid);
         navigator.clipboard.writeText(url).then(() => {
-            showNotification('Link copied to clipboard!');
+            showNotification('Enlace copiado al portapapeles!');
         });
     } else if (action === 'open-in-new-tab') {
         // Use stored href from card if available, otherwise construct URL
@@ -1366,7 +1366,7 @@ export async function handleTrackAction(
         if (url) {
             window.open(url, '_blank');
         } else {
-            showNotification('No original URL available for this track.');
+            showNotification('No hay URL original disponible para esta pista.');
         }
     } else if (action === 'block-track') {
         const { contentBlockingSettings } = await import('./storage.js');
@@ -1386,7 +1386,7 @@ export async function handleTrackAction(
         const albumArtist = type === 'album' ? item.artist : item.album?.artist;
 
         if (!albumId) {
-            showNotification('No album information available');
+            showNotification('No hay información del álbum disponible');
             return;
         }
 
@@ -1407,7 +1407,7 @@ export async function handleTrackAction(
         const artistName = item.artist?.name || item.artists?.[0]?.name || item.name;
 
         if (!artistId) {
-            showNotification('No artist information available');
+            showNotification('No hay información del artista disponible');
             return;
         }
 
@@ -1991,7 +1991,7 @@ function showSleepTimerModal(player) {
                 const customInput = document.getElementById('custom-minutes');
                 minutes = parseInt(customInput.value);
                 if (!minutes || minutes < 1) {
-                    showNotification('Please enter a valid number of minutes');
+                    showNotification('Por favor introduce un número válido de minutos');
                     return;
                 }
             } else {

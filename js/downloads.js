@@ -1337,7 +1337,7 @@ export async function downloadTrackWithMetadata(track, quality, api, lyricsManag
 
     const downloadKey = `track-${track.id}`;
     if (ongoingDownloads.has(downloadKey)) {
-        showNotification('This track is already being downloaded');
+        showNotification('Esta pista ya se está descargando');
         return;
     }
 

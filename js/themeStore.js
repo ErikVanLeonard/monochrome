@@ -249,7 +249,7 @@ export class ThemeStore {
         document.getElementById('theme-details-created').textContent = new Date(theme.created).toLocaleDateString();
         document.getElementById('theme-details-updated').textContent = new Date(theme.updated).toLocaleDateString();
         document.getElementById('theme-details-installs').textContent = theme.installs || 0;
-        document.getElementById('theme-details-desc').textContent = theme.description || 'No description provided.';
+        document.getElementById('theme-details-desc').textContent = theme.description || 'No se proporcionó descripción.';
 
         const applyBtn = document.getElementById('theme-details-apply-btn');
         applyBtn.onclick = async () => {

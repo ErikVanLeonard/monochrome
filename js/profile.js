@@ -128,7 +128,7 @@ export async function loadProfile(username) {
 
     document.getElementById('profile-banner').style.backgroundImage = '';
     document.getElementById('profile-avatar').src = '/assets/appicon.png';
-    document.getElementById('profile-display-name').textContent = 'Loading...';
+    document.getElementById('profile-display-name').textContent = 'Cargando...';
     document.getElementById('profile-username').textContent = '@' + username;
     document.getElementById('profile-status').style.display = 'none';
     document.getElementById('profile-about').textContent = '';
@@ -822,7 +822,7 @@ async function handleTrackClick(title, artist) {
                 window.monochromePlayer.playTrackFromQueue();
             }
         } else {
-            alert('Track not found');
+            alert('Pista no encontrada');
         }
     } catch (e) {
         console.error(e);
